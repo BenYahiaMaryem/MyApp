@@ -62,7 +62,7 @@ export default class Home extends Component {
 var categories = [
   {
     id: 1,
-    title: 'LOOKS',
+    title: 'CREATE MY WARDROBE',
     //image: 'http://res.cloudinary.com/atf19/image/upload/c_scale,w_489/v1500284127/pexels-photo-497848_yenhuf.jpg'
     image:'http://modernfashionblog.com/wp-content/uploads/2015/05/20-Latest-Summer-Fashion-Trends-Dresses-Ideas-Looks-For-Girls-2015-F.jpg'
   },

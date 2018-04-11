@@ -54,6 +54,9 @@ export default class SideMenuSecondLevel extends Component {
   }
 
   itemClicked(item) {
+    if(item.title=='ALL')
+    Actions.mywardrobe()
+    else
     Actions.category({id: item.id, title: item.title});
   }
 

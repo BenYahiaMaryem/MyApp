@@ -334,6 +334,13 @@ const menusSecondaryItems = [
     key: 'wishlist'
   },
   {
+    id: 21,
+    key: 'contact',
+    title: 'Contact Us',
+    icon: 'md-phone-portrait',
+    key: 'contact'
+  }/*,
+  {
     id: 20,
     key: 'map',
     title: 'Store Finder',
@@ -353,5 +360,5 @@ const menusSecondaryItems = [
     title: 'Newsletter',
     icon: 'md-paper',
     key: 'newsletter'
-  }
+  }*/
 ];

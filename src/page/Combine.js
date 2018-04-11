@@ -22,7 +22,7 @@ export default class Combine extends Component {
   constructor(props) {
     
     super(props);
-    this.state = { UserName: 'maryem'};
+    this.state = { UserName: 'maryem',data:[]};
     
   }
       state={hasError: false,
@@ -33,19 +33,26 @@ export default class Combine extends Component {
           this.setState({hasError: true, errorText: 'You choose event '+this.state.checkListOption});
         }
         //POST
-        sendData(){
+        sendData(occasion){
           
-           
-           fetch('http://localhost:5000/send', {
+           this.login()
+           fetch('http://localhost:5000/combine', {
            method: 'POST',
            headers: {
              Accept: 'application/json',
              'Content-Type': 'application/json',
            },
            body: JSON.stringify({
-             name: this.state.UserName
+             occasion: occasion
            }),
-         });
+         }
+        )
+        .then(response => response.json())
+        .then(response =>  Actions.outfit({outfits: response.outfit}))
+        .catch((error) => {
+          console.error('failedeeeee '+error);
+        });
+        
        }
       
       render() {
@@ -79,7 +86,7 @@ export default class Combine extends Component {
             {this.renderCustomSegmentControlClone()} */}
           </ScrollView>
           {this.state.hasError?<Text style={{color: "#c0392b", textAlign: 'center', marginTop: 10}}>{this.state.errorText}</Text>:null}
-          <Button onPress={() => this.login()} style={{ width: 120, height: 60,alignSelf: 'center', marginTop: 20, marginBottom: 25,backgroundColor: Colors.navbarBackgroundColor }}>
+          <Button onPress={() => this.sendData(this.state.checkListOption)} style={{ width: 120, height: 60,alignSelf: 'center', marginTop: 20, marginBottom: 25,backgroundColor: Colors.navbarBackgroundColor }}>
                         <Text style={{color: "#fdfdfd", marginLeft:'auto',marginRight:'auto'}}>Combine</Text>
                     </Button>
           </Content>
@@ -89,10 +96,10 @@ export default class Combine extends Component {
     
       renderCheckList() {
         const options = [
-          "Casual",
-          "Formal",
-          "Vacation",
-          "Workwear"
+          "casual",
+          "formal",
+          "vacation",
+          "workwear"
         ];
     
         function setSelectedOption(checkListOption){
@@ -190,9 +197,8 @@ export default class Combine extends Component {
               </View>
               {/*  <Text style={{
                 margin: 20,
-              }}>Event: {this.state.checkListOption || 'none'}</Text>  */}
-            </View>
-            <Text>User Registration Form</Text>
+              }}>Event: {this.state.checkListOption || 'none'}</Text> 
+                <Text>User Registration Form</Text>
         <Item>
         <Input placeholder="Name" onChangeText={(UserName) => this.setState({UserName})} 
          value={this.state.UserName} />
@@ -200,13 +206,19 @@ export default class Combine extends Component {
         
         <Button onPress={() => this.sendData()} style={{backgroundColor: Colors.navbarBackgroundColor, marginTop: 20}}>
               <Text style={{color: '#fdfdfd'}}>send</Text>
-            </Button>
-          </View>);
+            </Button> */}
+            </View>
+          
+          </View>
+          
+        );
     
       }
     
       // Super basic example
-     /* renderbasic(){
+    
+    
+      /* renderbasic(){
     
         const options = [
           "Option 1",
@@ -366,77 +378,5 @@ export default class Combine extends Component {
     
     
 
-  /* 
-    render() {
-        
-        var left = (
-          <Left style={{flex:1}}>
-            <Button onPress={() => Actions.pop()} transparent>
-              <Icon name='ios-arrow-back' />
-            </Button>
-          </Left>
-        );
-        var right = (
-          <Right style={{flex:1}}>
-            <Button onPress={() => Actions.search()} transparent>
-              <Icon name='ios-search-outline' />
-            </Button>
-            <Button onPress={() => Actions.cart()} transparent>
-              <Icon name='ios-cart' />
-            </Button>
-          </Right>
-        );
-        return(
-            <Container style={{backgroundColor: '#fdfdfd'}}>
-                <Navbar left={left} right={right} title='Combine Outfit' />
-                <Content>
-                <NBText style={{backgroundColor: '#fdfdfd', paddingTop: 10, paddingBottom: 10, paddingLeft: 12, paddingRight: 12, alignItems: 'center'}}> Choose An Event </NBText>  
-                
-                <ScrollView style={styles.container}>
-        {this.renderbasic()}
-        {this.renderCheckList()}
-        {this.renderSegmentControlClone()}
-        {this.renderVerticalSegmentControlClone()}
-        {this.renderCustomSegmentControlClone()}
-      </ScrollView>
-        
-                    <Button style={{ flex:1,alignSelf: 'center', marginTop: 20, marginBottom: 25 }}>
-                        <Text>Combine</Text>
-                    </Button>
-               
-                   
-              <List>
-                       <ListItem>
-                            <Radio selected={false}
-                            
-                             />
-                            <Text>Casual</Text>
-                        </ListItem>
-                        <ListItem>
-                            <Radio selected={false}
-                            />
-                            <Text>Formal</Text>
-                        </ListItem>
-                        <ListItem>
-                            <Radio selected={true}
-                             />
-                            <Text>Vacation</Text>
-                        </ListItem>
-                        <ListItem>
-                            <Radio selected={false}
-                            />
-                            <Text>WorkWear</Text>
-                        </ListItem>
-                    </List>  
-                   
-                
-                </Content>
-
-            </Container>
-
-        );
-
-    }
-   
-} */
+  
 

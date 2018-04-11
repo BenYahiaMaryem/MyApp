@@ -34,8 +34,10 @@ export default class CategoryBlock extends Component {
   }
 
   _onPress() {
-    if(this.props.title=='LOOKS')
-      Actions.AllProducts()
+    /*if(this.props.title=='LOOKS')
+      Actions.AllProducts()*/
+    if(this.props.title=='CREATE MY WARDROBE')
+      Actions.wardrobe()
     else if (this.props.title=='COMBINE OUTFITS')
       Actions.combine()
     else  

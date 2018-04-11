@@ -27,6 +27,10 @@ import Checkout from './page/Checkout';
 import Combine from './page/Combine';
 import Complete from './page/Complete';
 import Profile from './page/Profile';
+import Outfit from './page/Outfit';
+import Wardrobe from './page/Wardrobe';
+import MyWardrobe from './page/MyWardrobe';
+import Items from './page/Items';
 import AllProducts from './page/AllProducts';
 
 export default class Main extends Component {
@@ -55,6 +59,10 @@ export default class Main extends Component {
             <Scene key="combine" component={Combine} hideNavBar />
             <Scene key="complete" component={Complete} hideNavBar />
             <Scene key="profile" component={Profile} hideNavBar />
+            <Scene key="outfit" component={Outfit} hideNavBar />
+            <Scene key="wardrobe" component={Wardrobe} hideNavBar />
+            <Scene key="mywardrobe" component={MyWardrobe} hideNavBar />
+            <Scene key="item" component={Items} hideNavBar />
             <Scene key="AllProducts" component={AllProducts} hideNavBar />
           </Scene>
         </Router>

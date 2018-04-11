@@ -1,5 +1,5 @@
 /**
-* This is the Main file
+MyWardrobe : for consulting wardrobe
 **/
 
 // React native and others libraries imports
@@ -19,21 +19,24 @@ import Navbar from '../component/Navbar';
 
 
 
-export default class Complete extends Component {
+
+export default class MyWardrobe extends Component {
   
   constructor(props) {
     
     super(props);
-    this.state = { article: 'TOP',data:[]};
+    this.state = {data:[]};
     
   }
+
+  
   state={hasError: false,
     errorText: ''}
 
-    complete = async (id,type) => {
+    complete = async (id) => {
        //alert(JSON.stringify(id))
       alert(JSON.stringify(id))
-      fetch('http://localhost:5000/script/'+type, {
+      fetch('http://localhost:5000/script', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -48,6 +51,7 @@ export default class Complete extends Component {
       .catch(e => { throw e; })
      
   }
+  
   
     getData(){
       
@@ -110,31 +114,8 @@ export default class Complete extends Component {
       
         return (
             <Container style={{backgroundColor: '#fdfdfd'}}>
-            <Navbar left={left} right={right} title='Complete' />
-            <Text style={{
-                  color: '#555555',
-                  padding: 20, 
-                  fontWeight:'bold',
-                  paddingLeft: 20,
-                  marginBottom: 5,
-                  marginTop: 5,
-                  fontSize: 20,
-                }}>Choose an item from wardrobe</Text>
-             <Picker
-              selectedValue={this.state.article}
-              onValueChange={(itemValue, itemIndex) => this.setState({article: itemValue,hasError:true,errorText: 'You choose item '+itemValue})}>
-              
-              <Picker.Item label="TOP" value="TOP" />
-              <Picker.Item label="SKIRT" value="SKIRT" />
-              
-
-            </Picker>
-          
- 
-            {/* {this.state.hasError? <Text style={{color: "#c0392b", textAlign: 'center', marginTop: 10}}>{this.state.errorText}</Text>:null} */}
-          
-           {this.state.hasError? <Image style={{width: 80, height: 80}} source={{ uri: 'data:image/jpeg;base64,'+this.state.data[0].imageDecoded}}/>:null}
-             
+            <Navbar left={left} right={right} title='My Wardrobe' />
+            
             
             <ScrollView contentContainerStyle={{ paddingVertical: 20}} //style={{paddingVertical: 20,flexDirection : 'row',flexWrap : 'wrap',alignContent : 'stretch'}}
             >
@@ -142,9 +123,12 @@ export default class Complete extends Component {
              this.state.data.map((item) => {
                 return (
           
-           <TouchableOpacity onPress={()=>this.complete(item._id.$oid,item.type)}> 
-          <Image  key={item._id} style={{width: 80, height: 80}} source={{ uri: 'data:image/jpeg;base64,'+item.imageDecoded}}/>
-          </TouchableOpacity>
+                  <View  style={{alignContent : 'stretch',width : 160}}>
+                            <View  style={{backgroundColor : '#fff',borderRadius : 5,justifyContent : 'center',margin : 10,alignContent : 'stretch'}}>
+                            <Image source={{ uri: 'data:image/jpeg;base64,'+item.imageDecoded}} style={{height : 200,width : null,resizeMode : 'cover'}} />
+                                
+                            </View>
+                        </View>
       );
              
               

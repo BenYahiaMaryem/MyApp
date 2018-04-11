@@ -55,7 +55,7 @@ export default class Category extends Component {
           <Icon name='ios-search-outline' />
         </Button>
         <Button onPress={() => Actions.cart()} transparent>
-          <Icon name='ios-cart' />
+          <Icon name='ios-person' />
         </Button>
       </Right>
     );
